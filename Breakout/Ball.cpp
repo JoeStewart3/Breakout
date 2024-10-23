@@ -90,11 +90,32 @@ void Ball::update(float dt)
     {
         _direction.y *= -1; // Bounce vertically
     }
+
+    // add current position to list, removing oldest if necessary
+    trail.push_back(_sprite.getPosition());
+    if (trail.size() > trailLength) 
+    {
+        trail.pop_front();
+    }
 }
 
 void Ball::render()
 {
     _window->draw(_sprite);
+
+    // render trail
+    for (float i = 0; i < trail.size(); i++)
+    {
+       // set sprite position to indexed position in trail
+        _sprite.setPosition(trail[i]);
+       
+        // set sprite alpha to decrease as a function of index.
+        sf::Uint8 alpha = i / 10;
+        _sprite.setFillColor(sf::Color(_sprite.getFillColor().r, _sprite.getFillColor().g, _sprite.getFillColor().b, alpha));
+      
+       // draw sprite
+       _window->draw(_sprite);
+    }
 }
 
 void Ball::setVelocity(float coeff, float duration)

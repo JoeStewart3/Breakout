@@ -33,3 +33,8 @@ fire ball (green)
 
 # Time Details and Changelist
 <Add information to this section about the time you've taken for this task along with a professional changelist.>
+15 minutes - fixed compiler issues. removed #include "PowerupFireBall.h" from PowerupBase.h (child class needs parent class defined before it can be used)
+1 hour - updated paddle class, window relative mouse controls implemented
+2 hours - updated ball class, ball trail VFX implemented
+
+

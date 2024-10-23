@@ -1,4 +1,5 @@
 #include "Paddle.h"
+
 #include <iostream>
 
 Paddle::Paddle(sf::RenderWindow* window)
@@ -33,6 +34,17 @@ void Paddle::moveRight(float dt)
     }
 }
 
+void Paddle::moveMouse(float dt)
+{
+    float position = _sprite.getPosition().x;
+
+    if (sf::Mouse::getPosition(*_window).x > 0 && sf::Mouse::getPosition(*_window).x < _window->getSize().x - _width) //dont allow the paddle to follow the mouse outside of the window
+    {
+        _window->sf::Window::setMouseCursorVisible(false); // hide cursor while in window
+        _sprite.setPosition(sf::Mouse::getPosition(*_window).x, _sprite.getPosition().y);
+    }
+}
+
 void Paddle::update(float dt)
 {
     if (_timeInNewSize > 0)
@@ -43,6 +55,7 @@ void Paddle::update(float dt)
     {
         setWidth(1.0f, 0.0f); // Reset to default width after duration
     }
+
 }
 
 void Paddle::render()
