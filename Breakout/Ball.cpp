@@ -103,19 +103,20 @@ void Ball::render()
 {
     _window->draw(_sprite);
 
-    // render trail
+    // render each element in trail
     for (float i = 0; i < trail.size(); i++)
     {
        // set sprite position to indexed position in trail
-        _sprite.setPosition(trail[i]);
+       _sprite.setPosition(trail[i]);
        
-        // set sprite alpha to decrease as a function of index.
-        sf::Uint8 alpha = i / 10;
-        _sprite.setFillColor(sf::Color(_sprite.getFillColor().r, _sprite.getFillColor().g, _sprite.getFillColor().b, alpha));
+       // newest position opaque, oldest position transparent.
+       sf::Uint8 alpha = i / 10;
+       _sprite.setFillColor(sf::Color(_sprite.getFillColor().r, _sprite.getFillColor().g, _sprite.getFillColor().b, alpha));
       
        // draw sprite
        _window->draw(_sprite);
     }
+
 }
 
 void Ball::setVelocity(float coeff, float duration)

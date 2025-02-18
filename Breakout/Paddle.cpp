@@ -41,7 +41,7 @@ void Paddle::moveMouse(float dt)
     if (sf::Mouse::getPosition(*_window).x > 0 && sf::Mouse::getPosition(*_window).x < _window->getSize().x - _width) //dont allow the paddle to follow the mouse outside of the window
     {
         _window->sf::Window::setMouseCursorVisible(false); // hide cursor while in window
-        _sprite.setPosition(sf::Mouse::getPosition(*_window).x, _sprite.getPosition().y);
+        _sprite.setPosition(sf::Mouse::getPosition(*_window).x, _sprite.getPosition().y); //getPosition expects object, so _window pointer is derefenced(*)
     }
 }
 

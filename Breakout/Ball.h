@@ -23,8 +23,9 @@ private:
     bool _isAlive;
     bool _isFireBall;
     float _timeWithPowerupEffect;
+
     std::deque<sf::Vector2f> trail;
-    int trailLength = 300;
+    int trailLength = 255; // total number of alpha values
 
 
     GameManager* _gameManager;  // Reference to the GameManager
